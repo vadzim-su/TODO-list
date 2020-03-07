@@ -1,0 +1,13 @@
+a{
+    color: red;
+    &:hover{
+        font-size: 12px;
+    }
+}
+
+h1{
+    color: green;
+    &:hover{
+        font-size: 52px;
+    }
+}

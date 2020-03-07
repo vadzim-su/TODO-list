@@ -1,0 +1,11 @@
+a {
+  color: red; }
+  a:hover {
+    font-size: 12px; }
+
+h1 {
+  color: green; }
+  h1:hover {
+    font-size: 52px; }
+
+/*# sourceMappingURL=style.css.map */

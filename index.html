@@ -1,34 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/styles/css/style.css">
-    <script src="https://kit.fontawesome.com/98fe6b9977.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/styles/css/reset.css" />
+    <link rel="stylesheet" href="./assets/styles/css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/98fe6b9977.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-    <h1>Lorem ipsum dolor sit amet.</h1>
-    <a href="">12345</a>
-    <i class="fab fa-angellist"></i>
+  <body>
+    <input id="button" class="button button_add-task" type="button" value="Add task"/>
 
+    <!-- popup -->
 
+    <div class="popup" id="popup">
+      <div class="popup__content ">
+        <div class="popup__header">
+          <i class="fas fa-times popup__header_close"></i>
+          <h2 class="popup__header_title">Adding new task</h2>
+        </div>
 
+        <div class="popup__body">
+          <form action="#" class="col-12">
+            <div class="popup__info">
+              <input type="text" class="field popup__field popup__body_task col-8" placeholder="Task" name="task" required />
 
+              <span class="error_text">Enter the task name</span>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-</body>
+              <select class="field popup__field col-3 popup__body_select" name="priority" id="priority">
+                <option value="trial">Trial</option>
+                <option value="priority">Priority</option>
+                <option value="non-Priority">Non-priority</option>
+              </select>
+            </div>
 
+            <textarea class="field popup__field popup__body_description" rows="7" name="description" id="description" placeholder="Description" ></textarea>
+
+            <div class="popup__footer">
+              <input type="submit" value="OK" class="button popup__button button_ok">
+              <button class="button popup__button button_cancel">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- table (bootstrap) -->
+
+    <section class="tabulation col-12">
+
+      <ul class="nav nav-tabs" id="navigation-tabs" role="tablist">
+        <li class="nav-item col-4">
+          <a class="nav-link active tab-new" data-tab-name="new">TO DO</a>
+        </li>
+        <li class="nav-item col-4">
+          <a class="nav-link tab-finished" data-tab-name="finished">Finished</a>
+        </li>
+        <li class="nav-item col-4 tab-deleted">
+          <a class="nav-link tab-deleted" data-tab-name="deleted">Removed</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="tab-content">
+        <div class="tab-pane fade show active">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Task description</th>
+                <th scope="col">Importance</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+    </section>
+
+    <script src="./assets/scripts/script.js"></script>
+  </body>
 </html>

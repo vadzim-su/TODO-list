@@ -1,11 +1,111 @@
-a {
-  color: red; }
-  a:hover {
-    font-size: 12px; }
+.button {
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px; }
+  .button_add-task {
+    background-color: #59cc59;
+    color: honeydew;
+    display: block;
+    margin: 30px auto 30px; }
+    .button_add-task:hover {
+      background-color: #729772; }
+    .button_add-task:active {
+      background-color: #59cc59; }
+  .button_ok {
+    background-color: #7bdb91;
+    margin: 0 20px; }
+    .button_ok:hover {
+      background-color: #bff5c4; }
+    .button_ok:active {
+      background-color: #7bdb91; }
+  .button_cancel {
+    background-color: #7bdb91;
+    margin: 0 20px; }
+    .button_cancel:hover {
+      background-color: #bff5c4; }
+    .button_cancel:active {
+      background-color: #7bdb91; }
 
-h1 {
-  color: green; }
-  h1:hover {
-    font-size: 52px; }
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); }
+  .popup__content {
+    position: relative;
+    top: 50px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    animation-name: animatetop;
+    animation-duration: 0.5s; }
+  .popup__header {
+    position: relative;
+    margin-bottom: 40px; }
+    .popup__header_close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+      font-size: 28px;
+      color: #000;
+      text-shadow: 0 1px 0 #fff;
+      opacity: 0.5; }
+      .popup__header_close:hover {
+        opacity: 0.75;
+        color: #000;
+        text-decoration: none; }
+    .popup__header_title {
+      text-align: center;
+      color: #4a4646; }
+  .popup__body_description {
+    padding: 0 15px;
+    width: 100%;
+    margin-bottom: 30px;
+    resize: none; }
+  .popup__info {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; }
+  .popup__footer {
+    text-align: center; }
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0; }
+  to {
+    top: 50px;
+    opacity: 1; } }
+
+.invalid {
+  border: 2px solid red; }
+
+.action__td {
+  display: flex;
+  justify-content: space-between; }
+
+td i.fas {
+  font-size: 18px;
+  cursor: pointer;
+  margin: auto; }
+
+.error_text {
+  position: absolute;
+  display: none;
+  color: red;
+  top: 27px;
+  left: 10px; }
 
 /*# sourceMappingURL=style.css.map */

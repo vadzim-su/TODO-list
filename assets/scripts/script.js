@@ -20,14 +20,11 @@ if (localStorage.getItem("toDoList")) {
 
 addTask.addEventListener("click", (e) => {
   e.preventDefault();
+  let editId = null;
   showPopup.style.display = "block";
-
+  modalInputs[0].classList.remove("invalid");
+  errorText.style.display = "none";
   clearForm();
-  modalInputs.forEach((input) => {
-    if (input.classList.contains("invalid")) {
-      input.classList.remove("invalid");
-    }
-  });
 });
 
 closePopup.addEventListener("click", () => {
@@ -59,27 +56,33 @@ buttonOk.addEventListener("click", (e) => {
     newTask[value] = field.value;
   });
 
-  newTask.id = Math.random().toString();
-  newTask.status = "new";
-
-  const validationInputs = [].filter.call(
-    modalInputs,
-    (input) => input.hasAttribute("required") && !input.value
-  );
-
-  if (validationInputs.length) {
-    validationInputs.forEach((input) => {
-      input.classList.add("invalid");
-      errorText.style.display = "block";
-    });
-  } else {
+  if (newTask.id) {
+    allTasks.splice(numId, 1, newTask);
+    console.log(numId, editId);
+    newTask.id = editId;
+    newTask.status = "new";
     showPopup.style.display = "none";
-    errorText.style.display = "none";
+  } else {
+    newTask.id = Math.random().toString();
+    newTask.status = "new";
 
-    allTasks.push(newTask);
+    const validationInputs = [].filter.call(
+      modalInputs,
+      (input) => input.hasAttribute("required") && !input.value
+    );
 
-    drawTable(activeTab.dataset.tabName);
+    if (validationInputs.length) {
+      validationInputs.forEach((input) => {
+        input.classList.add("invalid");
+        errorText.style.display = "block";
+      });
+    } else {
+      showPopup.style.display = "none";
+      errorText.style.display = "none";
+      allTasks.push(newTask);
+    }
   }
+  drawTable(activeTab.dataset.tabName);
 
   tabsName.forEach((tab) => tab.classList.remove("active"));
   activeTab.classList.add("active");
@@ -163,6 +166,10 @@ table.addEventListener("click", (event) => {
         modalInputs[0].value = editTask.task;
         modalInputs[1].value = editTask.priority;
         modalInputs[2].value = editTask.description;
+        editId = editTask.id;
+        numId = allTasks.indexOf(editTask);
+
+        console.log(editId, numId);
       }
     }
 

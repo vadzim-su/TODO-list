@@ -58,7 +58,7 @@ buttonOk.addEventListener("click", (e) => {
 
   if (newTask.id) {
     allTasks.splice(numId, 1, newTask);
-    console.log(numId, editId);
+    // console.log(numId, editId);
     newTask.id = editId;
     newTask.status = "new";
     showPopup.style.display = "none";

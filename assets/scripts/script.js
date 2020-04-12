@@ -9,18 +9,19 @@ const allTasks = [];
 const errorText = document.querySelector(".error_text");
 const tabsName = document.querySelectorAll("[data-tab-name]");
 const activeTab = document.querySelector(".nav-link.active");
+const navigationTabs = document.querySelector("#navigation-tabs");
+let numId;
+let editId;
 
 if (localStorage.getItem("toDoList")) {
-  const savedTasksFromStorage = JSON.parse(localStorage.getItem("toDoList"));
+  let savedTasksFromStorage = JSON.parse(localStorage.getItem("toDoList"));
   savedTasksFromStorage.forEach((task) => allTasks.push(task));
   drawTable("new");
-} else {
-  savedTasksFromStorage = [];
 }
 
 addTask.addEventListener("click", (e) => {
   e.preventDefault();
-  let editId = null;
+  editId = null;
   showPopup.style.display = "block";
   modalInputs[0].classList.remove("invalid");
   errorText.style.display = "none";
@@ -36,11 +37,30 @@ buttonCancel.addEventListener("click", (e) => {
   showPopup.style.display = "none";
 });
 
-window.addEventListener("click", (e) => {
-  if (e.target == showPopup) {
+window.addEventListener("mousedown", (e) => {
+  if (e.target === showPopup) {
     showPopup.style.display = "none";
   }
 });
+
+function validationForm() {
+  const validationInputs = [].filter.call(
+    modalInputs,
+    (input) => input.hasAttribute("required") && !input.value
+  );
+
+  if (validationInputs.length) {
+    validationInputs.forEach((input) => {
+      input.classList.add("invalid");
+      errorText.style.display = "block";
+      console.log(0);
+      return false;
+    });
+  } else {
+    console.log(1);
+    return true;
+  }
+}
 
 buttonOk.addEventListener("click", (e) => {
   e.preventDefault();
@@ -56,32 +76,23 @@ buttonOk.addEventListener("click", (e) => {
     newTask[value] = field.value;
   });
 
-  if (newTask.id) {
-    allTasks.splice(numId, 1, newTask);
-    // console.log(numId, editId);
-    newTask.id = editId;
-    newTask.status = "new";
-    showPopup.style.display = "none";
-  } else {
-    newTask.id = Math.random().toString();
-    newTask.status = "new";
+  const isOk = validationForm();
 
-    const validationInputs = [].filter.call(
-      modalInputs,
-      (input) => input.hasAttribute("required") && !input.value
-    );
-
-    if (validationInputs.length) {
-      validationInputs.forEach((input) => {
-        input.classList.add("invalid");
-        errorText.style.display = "block";
-      });
-    } else {
+  if (isOk) {
+    console.log(isOk);
+    if (editId) {
+      newTask.id = editId;
+      newTask.status = "new";
       showPopup.style.display = "none";
-      errorText.style.display = "none";
+      allTasks.splice(numId, 1, newTask);
+    } else {
+      newTask.id = Math.random().toString();
+      newTask.status = "new";
       allTasks.push(newTask);
     }
+    showPopup.style.display = "none";
   }
+
   drawTable(activeTab.dataset.tabName);
 
   tabsName.forEach((tab) => tab.classList.remove("active"));
@@ -117,6 +128,13 @@ function drawTable(status) {
     const actionsTD = document.createElement("td");
 
     actionsTD.classList.add("action__td");
+    actionsTD.classList.add("col-2");
+    row.classList.add("row");
+    num.classList.add("col-1");
+    name.classList.add("col");
+    description.classList.add("col-3");
+    priority.classList.add("col-2");
+
     actionsTD.setAttribute("data-id", task.id);
 
     num.textContent = i + 1;
@@ -168,8 +186,6 @@ table.addEventListener("click", (event) => {
         modalInputs[2].value = editTask.description;
         editId = editTask.id;
         numId = allTasks.indexOf(editTask);
-
-        console.log(editId, numId);
       }
     }
 
@@ -229,7 +245,6 @@ table.addEventListener("click", (event) => {
 
 // Draw table by press the tabs
 
-const navigationTabs = document.querySelector("#navigation-tabs");
 navigationTabs.addEventListener("click", function (event) {
   if (event.target.matches("a")) {
     const links = this.querySelectorAll("a");

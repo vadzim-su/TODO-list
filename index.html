@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="./assets/styles/css/reset.css" />
     <link rel="stylesheet" href="./assets/styles/css/style.css" />
     <script
@@ -19,7 +20,7 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <title>Document</title>
+    <title>ToDO_List</title>
   </head>
 
   <body>
@@ -77,17 +78,17 @@
 
       <div class="tab-content" id="tab-content">
         <div class="tab-pane fade show active">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Task description</th>
-                <th scope="col">Importance</th>
-                <th scope="col">Actions</th>
+          <table class="table table-striped container-fluid" valign="middle">
+            <thead class="container-fluid">
+              <tr  class="row">
+                <th class="col-1">#</th>
+                <th class="col" scope="col">Title</th>
+                <th class="col-3" scope="col">Task description</th>
+                <th class="col-2" scope="col">Importance</th>
+                <th class="col-2" scope="col">Actions</th>
               </tr>
-            </th>
-            <tbody></tbody>
+            </thead>
+            <tbody class="container-fluid"></tbody>
           </table>
         </div>
 

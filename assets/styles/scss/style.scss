@@ -140,6 +140,11 @@
   justify-content: space-between;
 }
 
+.row th,
+.row td:not(:nth-child(2)):not(:nth-child(3)) {
+  text-align: center;
+}
+
 td i.fas {
   font-size: 18px;
   cursor: pointer;
